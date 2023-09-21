@@ -10,4 +10,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "kotlin-multiplatform-desktop"
+rootProject.name = "kotlin-compose-multiplatform-desktop"

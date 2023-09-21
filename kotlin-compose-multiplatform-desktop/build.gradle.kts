@@ -28,7 +28,7 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Rpm)
-            packageName = "kotlin-multiplatform-desktop"
+            packageName = "kotlin-compose-multiplatform-desktop"
             packageVersion = "1.0.0"
         }
     }
