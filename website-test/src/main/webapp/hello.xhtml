@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+
+<h:head>
+	<title>JSF 2.0 Hello World</title>
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.js"></script>
+	<script src="scripts/jquery-ui.min.js"></script>
+	<!-- SCRIPT by Gabriel Lett: github.com/gabriellett/jQuery-password-complexity-widget -->
+	<script src="validate-password-widget.js"></script>
+	<script>
+	$(document).ready(function(){
+	    $("[data-validate-complexity]").each(function(){
+	        console.log($(this));
+	        $(this).validatePassword({
+	            validations: {
+	                minUppercaseChars: {
+	                    message: "At least one uppercase letter",
+	                    regex: "^(?=.*[A-Z]+).+$"},
+	                minLowercaseChars: {
+	                    message: "At least one lowercase letter",
+	                    regex: "^(?=.*[a-z]+).+$"},
+	                minNumbers: {
+	                    message: "At least one number",
+	                    regex: "^(?=.*[0-9]+).+$"},
+	                minSpecialChars: {
+	                    message: "At least one special letter (!$%@#)",
+	                    regex: "^(?=.*[!$%@#]+).+$"},
+	                minLength: {
+	                    message: "At least 8 characters",
+	                    regex: ".{8,}$"}
+	            }
+	        });
+	    });
+	});
+	</script>
+</h:head>
+<h:body>
+	<h3>hello.xhtml</h3>
+
+	<h4>Cadastrar</h4>
+	<h:form>
+		<h:inputText value="#{user.name}"></h:inputText>
+		<h:inputText value="#{user.password}" converter="Char[]Converter"></h:inputText>
+		<h:commandButton value="Cadastrar"
+			action="#{userDaoController.createUser(user)}"></h:commandButton>
+	</h:form>
+
+	<h4>Entrar</h4>
+	<div id="password_validations"></div>
+	<h:form>
+		<h:inputText value="#{user.name}"></h:inputText>
+		<h:inputText value="#{user.password}" converter="Char[]Converter"
+			type="password" data-validate-complexity="true"
+			data-confirmation-field="#passwordConfirmation" id="password" ></h:inputText>
+		<h:inputText type="password" id="passwordConfirmation" ></h:inputText>
+		<h:commandButton value="Entrar"
+			action="#{userDaoController.checkLogin(user)}"></h:commandButton>
+		<h:outputLabel value="#{userDaoController.message} " />
+	</h:form>
+</h:body>
+</html>
