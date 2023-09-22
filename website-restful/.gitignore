@@ -1,0 +1,4 @@
+.settings/
+.project
+.tern-project
+target/
