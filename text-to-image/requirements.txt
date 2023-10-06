@@ -7,3 +7,5 @@ accelerate
 opencv-python
 safetensors
 Pillow
+scipy
+invisible_watermark
